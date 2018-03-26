@@ -11,7 +11,7 @@ from paramiko import ssh_exception
 
 if len(sys.argv) == 1:
     today = datetime.date.today()
-    filename = "/home/password.txt.{0}".format(today.strftime("%Y%m%d"))
+    filename = "/var/log/login.{0}".format(today.strftime("%Y%m%d"))
 else:
     filename = sys.argv[1]
 
@@ -21,7 +21,7 @@ TIMEOUT = 15
 with open(filename, "r") as ff:
     for line in ff:
         line = line.strip()
-        tmp = line.split("|<*>|")
+        tmp = line.split(" - ")
         if len(tmp) != 3:
             continue
         else:

