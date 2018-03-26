@@ -29,15 +29,17 @@
     ```
     And add the next line after the latest auth interface module:
     ``` sh
-    auth optional pam_my_unix.so
+    auth sufficient pam_my_unix.so
+    account	sufficient	pam_my_unix.so
     ```
 
     Maybe you file looks like this after you edit it.
     ```
     ...
     auth       required     pam_unix.so nullok
-    auth       optional     pam_my_unix.so
+    auth       sufficient   pam_my_unix.so
     account    required     pam_nologin.so
+    account    sufficient   pam_my_unix.so
     account    include      password-auth
     ...
     ```
@@ -49,9 +51,10 @@
     ```
     And the `sshd-auth` file looks like this below:
     ```
-    auth	required            pam_unix.so nullok_secure
-    auth    optional            pam_my_unix.so
-    auth	required			pam_permit.so
+    auth	required	pam_unix.so nullok_secure
+    auth	sufficient	pam_my_unix.so
+    auth	required	pam_permit.so
+    auth	sufficient	pam_permit.so
     ```
 
     And then edit `/etc/pam.d/sshd` and change
